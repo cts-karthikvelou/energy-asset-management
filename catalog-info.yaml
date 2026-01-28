@@ -10,7 +10,7 @@ metadata:
     # flowsource/aws-pipelines: "flowsource-demo-cd-pipeline"
     flowsource/jenkins-pipelines: Energy-Asset-Management-Pipeline
     flowsource/durationInDays: 1
-    flowsource/jenkins-pipelines-trigger: Energy-Asset-Management-Pipeline
+    flowsource/jenkins-pipelines-trigger: ""
     flowsource/aws-repo-name: ""
     flowsource/aws-region: "ap-southeast-2"
     flowsource/durationInDays: '60'
