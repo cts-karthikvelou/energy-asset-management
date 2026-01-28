@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: Enery_Asset_Management
-  description: "Enery Asset Management"
+  name: Energy_Asset_Management
+  description: "Energy Asset Management"
   annotations:
     expensetracker.io/appid: EnergyAssetManagementComponent
     github.com/project-slug: karthikvelou-cts/energy-asset-management
