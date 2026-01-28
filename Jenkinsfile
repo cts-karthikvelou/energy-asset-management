@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/karthikvelou-cts/energy-asset-management.git'
+                git branch: 'main', url: 'https://github.com/karthikvelou-cts/energy-asset-management.git'
             }
         }
 
@@ -19,11 +19,6 @@ pipeline {
             steps {
                 echo 'Running tests...'
                 // Example: sh 'mvn test'
-            }
-        }
-        stage('Checkout') {
-            steps {
-                git branch: 'main', url: 'https://github.com/karthikvelou-cts/energy-asset-management.git'
             }
         }
         stage('Deploy') {
