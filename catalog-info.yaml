@@ -21,7 +21,7 @@ metadata:
     flowsource/blackduck-project-id: sonarscan-testing
     backstage.io/kubernetes-namespace: sonar-ns
     backstage.io/kubernetes-label-selector: app=sonarscan-testing
-    flowsource/jira-project-key: SCRUM
+    flowsource/jira-project-key: EAM
     flowsource/jira-filter-field-value: ''
     flowsource/jira-filter-field-key: ''
     flowsource/jira-enable-current-sprint: 'true'
