@@ -29,6 +29,6 @@ metadata:
 spec:
   type: service
   lifecycle: experimental
-  owner: group:catalog-admin,default-group,catalog-user
+  owner: group:catalog-admin
   providesApis:
     - sonarscan-testing-api
