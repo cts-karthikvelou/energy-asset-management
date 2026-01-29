@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        NODEJS_HOME = tool name: 'NodeJS_18', type: 'NodeJSInstallation'
-        PATH = "${NODEJS_HOME}/bin:${env.PATH}"
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -37,7 +32,6 @@ pipeline {
             }
             steps {
                 echo 'Deploying build artifacts...'
-                // Example: copy build output to a server or S3 bucket
                 // sh 'aws s3 sync dist/ s3://my-energy-frontend-bucket'
             }
         }
