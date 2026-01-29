@@ -22,8 +22,6 @@ metadata:
     backstage.io/kubernetes-namespace: sonar-ns
     backstage.io/kubernetes-label-selector: app=sonarscan-testing
     flowsource/jira-project-key: EAM
-    flowsource/jira-storypoint-field: "8"
-    flowsource/jira-storypoint-status: "In progress"
     flowsource/jira-filter-field-value: ''
     flowsource/jira-filter-field-key: ''
     flowsource/jira-enable-current-sprint: 'true'
