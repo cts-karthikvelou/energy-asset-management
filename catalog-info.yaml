@@ -14,7 +14,7 @@ metadata:
     flowsource/aws-region: "ap-southeast-2"
     flowsource/durationInDays: '60'
     flowsource/aws-project-name: flowsource-demo-v1
-    flowsource/sonarqube-project-key: springboot-app-demo
+    flowsource/sonarqube-project-key: karthikvelou-cts_energy-asset-management
     flowsource/github-repo-owner: karthikvelou-cts
     flowsource/github-repo-name: energy-asset-management
     flowsource/checkmarx-project-id: sonarscan-testing
