@@ -3,6 +3,10 @@ kind: Component
 metadata:
   name: Energy_Asset_Management
   description: "Energy Asset Management"
+  tags:
+    - testing 
+    - sonar 
+    - experimental
   annotations:
     expensetracker.io/appid: EnergyAssetManagementComponent
     github.com/project-slug: karthikvelou-cts/energy-asset-management
@@ -30,5 +34,6 @@ spec:
   type: service
   lifecycle: experimental
   owner: group:catalog-admin
+  system: quality-platform
   providesApis:
     - sonarscan-testing-api
