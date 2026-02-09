@@ -1,12 +1,25 @@
 apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: energy-management-platform
+  description: "Platform for managing energy assets and optimization"
+spec:
+  owner: group:catalog-admin
+
+---
+apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: Energy_Asset_Management
   description: "Energy Asset Management"
+  tags:
+    - testing 
+    - sonar 
+    - experimental
   annotations:
     expensetracker.io/appid: EnergyAssetManagementComponent
     github.com/project-slug: karthikvelou-cts/energy-asset-management
-    backstage.io/techdocs-ref: dir:.
+    backstage.io/techdocs-ref: dir:./docs
     # flowsource/aws-pipelines: "flowsource-demo-cd-pipeline"
     flowsource/jenkins-pipelines: "Energy-Asset-Management-Pipeline"
     flowsource/jenkins-pipelines-trigger: "Energy-Asset-Management-Pipeline"
@@ -14,7 +27,7 @@ metadata:
     flowsource/aws-region: "ap-southeast-2"
     flowsource/durationInDays: '60'
     flowsource/aws-project-name: flowsource-demo-v1
-    flowsource/sonarqube-project-key: springboot-app-demo
+    flowsource/sonarqube-project-key: karthikvelou-cts_energy-asset-management
     flowsource/github-repo-owner: karthikvelou-cts
     flowsource/github-repo-name: energy-asset-management
     flowsource/checkmarx-project-id: sonarscan-testing
@@ -22,6 +35,7 @@ metadata:
     backstage.io/kubernetes-namespace: sonar-ns
     backstage.io/kubernetes-label-selector: app=sonarscan-testing
     flowsource/jira-project-key: EAM
+    flowsource/jira-storypoint-field: 'Story point estimate'
     flowsource/jira-filter-field-value: ''
     flowsource/jira-filter-field-key: ''
     flowsource/jira-enable-current-sprint: 'true'
@@ -29,5 +43,6 @@ spec:
   type: service
   lifecycle: experimental
   owner: group:catalog-admin
+  system: energy-management-platform
   providesApis:
     - sonarscan-testing-api
