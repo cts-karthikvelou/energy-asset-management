@@ -25,7 +25,29 @@ pipeline {
                 sh 'npm test || echo "No tests configured"'
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    // Use the SonarQube server configured in Jenkins
+                    withSonarQubeEnv('MySonarQubeServer') {
 
+                        // Load the SonarScanner tool installed in Jenkins
+                        def scannerHome = tool 'SonarScanner'
+
+                        // Use your SonarQube token securely
+                        withCredentials([string(credentialsId: 'SONARQUBE_TOKEN', variable: 'SQ_TOKEN')]) {
+                            sh """
+                                ${scannerHome}/bin/sonar-scanner \
+                                -Dsonar.projectKey=energy-asset-management \
+                                -Dsonar.sources=. \
+                                -Dsonar.host.url=https://dev.flowsource.next25era.org:447 \
+                                -Dsonar.login=${SQ_TOKEN}
+                            """
+                        }
+                    }
+                }
+            }
+        }
         stage('Deploy') {
             when {
                 branch 'main'
