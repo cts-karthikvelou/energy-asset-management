@@ -4,7 +4,7 @@ pipeline {
   environment {
     CI = 'true'
     NVM_DIR = "${env.HOME}/.nvm"
-    // Bootstrap nvm + Node 20 and run a command. Use in every sh step.
+    // Bootstrap nvm + Node 20 and run a command. Reused in every shell step.
     NODE20_PREFIX = "export NVM_DIR='${NVM_DIR}'; \
 [ -s '${NVM_DIR}/nvm.sh' ] || (curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash); \
 . '${NVM_DIR}/nvm.sh'; nvm install 20; nvm use 20;"
@@ -28,20 +28,9 @@ pipeline {
       }
     }
 
-    stage('Discover npm scripts') {
-      steps {
-        script {
-          def pkgText = readFile 'package.json'
-          def pkg = new groovy.json.JsonSlurperClassic().parseText(pkgText)
-          env.HAS_BUILD = (pkg?.scripts?.build != null).toString()
-          env.HAS_TEST = (pkg?.scripts?.test != null).toString()
-          env.HAS_TEST_COV = (pkg?.scripts?.'test:coverage' != null).toString()
-        }
-      }
-    }
-
     stage('Install Dependencies') {
       steps {
+        // npm ci (strict) -> fallback to npm install if lockfile drift exists
         sh """
           bash -lc "${NODE20_PREFIX} \
           if [ -f package-lock.json ]; then npm ci || npm install; else npm install; fi"
@@ -50,10 +39,15 @@ pipeline {
     }
 
     stage('Build') {
-      when { expression { return env.HAS_BUILD == 'true' } }
       steps {
+        // Run build only if a "build" script exists
         sh """
-          bash -lc "${NODE20_PREFIX} npm run build"
+          bash -lc "${NODE20_PREFIX} \
+          if npm run | grep -q '^  build\\b'; then \
+            echo 'Running build...'; npm run build; \
+          else \
+            echo 'No build script found, skipping build'; \
+          fi"
         """
       }
       post {
@@ -64,17 +58,23 @@ pipeline {
     }
 
     stage('Test with Coverage') {
-      when { expression { return env.HAS_TEST == 'true' || env.HAS_TEST_COV == 'true' } }
       steps {
+        // Prefer test:coverage, else test; skip gracefully if neither exists
         sh """
           bash -lc "${NODE20_PREFIX} \
-          if npm run | grep -q '^  test:coverage'; then npm run test:coverage; else npm test; fi"
+          if npm run | grep -q '^  test:coverage\\b'; then \
+            echo 'Running test:coverage...'; npm run test:coverage; \
+          elif npm run | grep -q '^  test\\b'; then \
+            echo 'Running test...'; npm test; \
+          else \
+            echo 'No test scripts found, skipping tests'; \
+          fi"
         """
       }
       post {
         always {
           archiveArtifacts artifacts: 'coverage/**', allowEmptyArchive: true
-          // If you emit JUnit XML (e.g., jest-junit), publish it here:
+          // If you generate JUnit XML (e.g., jest-junit), you can publish it:
           // junit testResults: 'junit-report.xml', allowEmptyResults: true
         }
       }
@@ -83,8 +83,9 @@ pipeline {
     stage('SonarQube Analysis') {
       steps {
         script {
+          // Uses Jenkins' configured SonarQube server + SonarScanner tool
           withSonarQubeEnv('MySonarQubeServer') {
-            def scannerHome = tool 'SonarScanner'   // ensure this tool is configured in Jenkins -> Tools
+            def scannerHome = tool 'SonarScanner'
             withCredentials([string(credentialsId: 'SONARQUBE_TOKEN', variable: 'SQ_TOKEN')]) {
               sh """
                 bash -lc "${NODE20_PREFIX} \
@@ -105,6 +106,7 @@ pipeline {
       when { branch 'main' }
       steps {
         echo 'Deploying build artifacts...'
+        // Example:
         // sh 'aws s3 sync dist/ s3://my-energy-frontend-bucket --delete'
       }
     }
