@@ -7,10 +7,10 @@ import biomass from "../assets/Biomass_Energy.jpg";
 import ocean from "../assets/Ocean_Energy.jpg";
 import geothermal from "../assets/geothermal.jpg";
 import coal from "../assets/Coal.jpg";
-import oil from "../assets/oil.jpg";
-import gas from "../assets/gas.jpg";
+import oil from "../assets/Oil.jpg";
+import gas from "../assets/Gas.jpg";
 import nuclear from "../assets/Nuclear_Energy.jpg";
-import uranium from "../assets/uranium.jpg";
+import uranium from "../assets/Uranium.jpg";
 import minerals from "../assets/Minerals.jpg";
 
 const Projects = () => {
