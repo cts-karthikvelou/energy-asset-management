@@ -6,7 +6,7 @@ import hydro from "../assets/Hydro_Energy.jpg";
 import biomass from "../assets/Biomass_Energy.jpg";
 import ocean from "../assets/Ocean_Energy.jpg";
 import geothermal from "../assets/geothermal.jpg";
-import coal from "../assets/coal.jpg";
+import coal from "../assets/Coal.jpg";
 import oil from "../assets/oil.jpg";
 import gas from "../assets/gas.jpg";
 import nuclear from "../assets/Nuclear_Energy.jpg";
