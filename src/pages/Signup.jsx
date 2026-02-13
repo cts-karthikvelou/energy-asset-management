@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { FaGoogle, FaFacebook } from "react-icons/fa";
+import { useNavigate, Link } from "react-router-dom";
+// import { FaGoogle, FaFacebook } from "react-icons/fa";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -57,8 +57,9 @@ const Signup = () => {
 
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label className="form-label text-white">Full Name</label>
+            <label htmlFor="name" className="form-label text-white">Full Name</label>
             <input
+              id="name"
               type="text"
               className="form-control"
               name="name"
@@ -70,8 +71,9 @@ const Signup = () => {
           </div>
 
           <div className="mb-3">
-            <label className="form-label text-white">Email ID</label>
+            <label htmlFor="email" className="form-label text-white">Email ID</label>
             <input
+              id="email"
               type="email"
               className="form-control"
               name="email"
@@ -83,8 +85,9 @@ const Signup = () => {
           </div>
 
           <div className="mb-3">
-            <label className="form-label text-white">Password</label>
+            <label htmlFor="password" className="form-label text-white">Password</label>
             <input
+              id="password"
               type="password"
               className="form-control"
               name="password"
@@ -116,12 +119,12 @@ const Signup = () => {
 
         <p className="text-center text-white mt-4">
           Already have an account?{" "}
-          <span
-            style={{ cursor: "pointer", color: "#00ff7f", fontWeight: "600" }}
-            onClick={() => navigate("/login")}
+          <Link
+            to="/login"
+            style={{ color: "#00ff7f", fontWeight: "600" }}
           >
             Login
-          </span>
+          </Link>
         </p>
 
         {/* Social Icon Hover CSS */}
