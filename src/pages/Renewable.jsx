@@ -168,7 +168,6 @@ const Renewable = () => {
                 }`}
                 style={{
                   overflow: "hidden",
-                  transform: energy.id === highlightedId ? "scale(1.05)" : "scale(1)",
                 }}
               >
                 <img

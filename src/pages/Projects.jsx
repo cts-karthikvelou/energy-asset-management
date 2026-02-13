@@ -90,7 +90,21 @@ const Projects = () => {
           {renewable.map((item) => (
             <div className="col-md-4" key={item.id}>
               <div
-                className="card h-100 shadow-sm border-0 hover-card"
+                className="card h-100 shadow-sm border-0"
+                style={{
+                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                  cursor: "pointer",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-8px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 6px 20px rgba(0,0,0,0.15)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow =
+                    "0 4px 10px rgba(0,0,0,0.1)";
+                }}
               >
                 <img
                   src={item.img}
@@ -128,7 +142,21 @@ const Projects = () => {
           {nonrenewable.map((item) => (
             <div className="col-md-4" key={item.id}>
               <div
-                className="card h-100 shadow-sm border-0 hover-card"
+                className="card h-100 shadow-sm border-0"
+                style={{
+                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                  cursor: "pointer",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-8px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 6px 20px rgba(0,0,0,0.15)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow =
+                    "0 4px 10px rgba(0,0,0,0.1)";
+                }}
               >
                 <img
                   src={item.img}
