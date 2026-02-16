@@ -1,3 +1,13 @@
+
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: include-groups
+spec:
+  type: url
+  targets:
+    - https://raw.githubusercontent.com/cts-karthikvelou/energy-asset-management/main/catalog-admin.yaml
+----
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
