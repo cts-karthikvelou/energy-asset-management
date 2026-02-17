@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-// import { FaGoogle, FaFacebook } from "react-icons/fa";
 
 const Signup = () => {
   const navigate = useNavigate();
