@@ -1,4 +1,3 @@
-
 apiVersion: backstage.io/v1alpha1
 kind: Location
 metadata:
@@ -7,7 +6,7 @@ spec:
   type: url
   targets:
     - https://raw.githubusercontent.com/cts-karthikvelou/energy-asset-management/main/catalog-admin.yaml
-----
+---
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
@@ -19,7 +18,7 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: Energy_Asset_Management
+  name: energy-asset-management
   description: "Energy Asset Management"
   tags:
     - testing 
