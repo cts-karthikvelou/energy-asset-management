@@ -1,11 +1,15 @@
 apiVersion: backstage.io/v1alpha1
 kind: Location
 metadata:
-  name: include-groups
+  name: eam-include-org-entities
 spec:
   type: url
   targets:
     - https://raw.githubusercontent.com/cts-karthikvelou/energy-asset-management/main/catalog-admin.yaml
+  rules:
+    - allow:
+        - Group
+        - User
 ---
 apiVersion: backstage.io/v1alpha1
 kind: System
