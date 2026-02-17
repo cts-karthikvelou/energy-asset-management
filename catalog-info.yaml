@@ -1,15 +1,15 @@
 apiVersion: backstage.io/v1alpha1
-kind: Location
+kind: Group
 metadata:
-  name: eam-include-org-entities
+  name: catalog-admin
+  namespace: default
+  title: Catalog Admins
+  description: Administrators responsible for Backstage catalog governance
 spec:
-  type: url
-  targets:
-    - https://raw.githubusercontent.com/cts-karthikvelou/energy-asset-management/main/catalog-admin.yaml
-  rules:
-    - allow:
-        - Group
-        - User
+  type: team
+  profile:
+    displayName: Catalog Admins
+  members: []
 ---
 apiVersion: backstage.io/v1alpha1
 kind: System
@@ -22,6 +22,7 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  # IMPORTANT: must be DNS-compliant; use lowercase + hyphens only
   name: energy-asset-management
   description: "Energy Asset Management"
   tags:
