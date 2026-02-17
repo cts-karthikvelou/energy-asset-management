@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
-  name: energy-management-platform
+  name: Energy-Management-Platform
   description: "Platform for managing energy assets and optimization"
 spec:
   owner: group:default/catalog-admin
@@ -10,7 +10,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   # IMPORTANT: must be DNS-compliant; use lowercase + hyphens only
-  name: energy-asset-management
+  name: Energy_Asset_Management
   description: "Energy Asset Management"
   tags:
     - testing 
