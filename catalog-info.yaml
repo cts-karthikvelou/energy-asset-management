@@ -1,17 +1,4 @@
 apiVersion: backstage.io/v1alpha1
-kind: Group
-metadata:
-  name: catalog-admin
-  namespace: default
-  title: Catalog Admins
-  description: Administrators responsible for Backstage catalog governance
-spec:
-  type: team
-  profile:
-    displayName: Catalog Admins
-  members: []
----
-apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
   name: energy-management-platform
