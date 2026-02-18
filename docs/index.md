@@ -1,3 +1,4 @@
 # Energy Asset Management Docs
 
-Welcome to the documentation for the Energy Asset Management component.
+Welcome to the documentation for the Energy Asset Management component. 18/02/2026
+
