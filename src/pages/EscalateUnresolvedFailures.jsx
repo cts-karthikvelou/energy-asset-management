@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-const EscalateUnresolvedFailures = () => {
-  const [failures, setFailures] = useState([]);
-  const [escalatedFailures, setEscalatedFailures] = useState([]);
+const EscalateUnresolvedFailures = ({ initialFailures = [], initialEscalatedFailures = [] }) => {
+  const [failures, setFailures] = useState(initialFailures);
+  const [escalatedFailures, setEscalatedFailures] = useState(initialEscalatedFailures);
 
   const handleEscalate = (failure) => {
     setEscalatedFailures([...escalatedFailures, failure]);
