@@ -2,10 +2,6 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import axios from 'axios';
-import SendFailureNotification from './SendFailureNotification';import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import axios from 'axios';
 import SendFailureNotification from './SendFailureNotification';
 
 // Mock axios to prevent actual API calls
