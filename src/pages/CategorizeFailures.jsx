@@ -19,7 +19,7 @@ const CategorizeFailures = () => {
     }
     acc[failure.type].push(failure.failure);
     return acc;
-  }, null);
+  }, {});
 
   return (
     <div>

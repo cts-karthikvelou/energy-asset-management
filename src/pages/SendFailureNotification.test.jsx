@@ -85,7 +85,7 @@ describe('SendFailureNotification Component', () => {
     window.alert = jest.fn();
   });
 
-  ### 1. Rendering Test
+  // ### 1. Rendering Test
   test('renders input fields and send button', () => {
     render(<SendFailureNotification />);
     
@@ -94,7 +94,7 @@ describe('SendFailureNotification Component', () => {
     expect(screen.getByRole('button', { name: /send notification/i })).toBeInTheDocument();
   });
 
-  ### 2. State Update Test
+  // ### 2. State Update Test
   test('updates input values on change', () => {
     render(<SendFailureNotification />);
     
@@ -108,7 +108,7 @@ describe('SendFailureNotification Component', () => {
     expect(emailInput.value).toBe('admin@example.com');
   });
 
-  ### 3. Successful Submission Test
+  // ### 3. Successful Submission Test
   test('calls axios.post and shows success alert on 200 response', async () => {
     axios.post.mockResolvedValue({ status: 200 });
 
@@ -127,7 +127,7 @@ describe('SendFailureNotification Component', () => {
     });
   });
 
-  ### 4. Error Handling Test
+  // 4. Error Handling Test
   test('logs error to console when API call fails', async () => {
     const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
     axios.post.mockRejectedValue(new Error('Network Error'));

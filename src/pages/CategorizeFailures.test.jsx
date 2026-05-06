@@ -5,7 +5,7 @@ import CategorizeFailures from './CategorizeFailures';
 
 describe('CategorizeFailures Component', () => {
   
-  ### 1. Initial Render Test
+  // ### 1. Initial Render Test
   test('renders input fields and add button', () => {
     render(<CategorizeFailures />);
     
@@ -14,7 +14,7 @@ describe('CategorizeFailures Component', () => {
     expect(screen.getByRole('button', { name: /add failure/i })).toBeInTheDocument();
   });
 
-  ### 2. Adding and Categorizing Test
+  // ### 2. Adding and Categorizing Test
   test('adds failures and groups them by type correctly', () => {
     render(<CategorizeFailures />);
     
@@ -47,7 +47,7 @@ describe('CategorizeFailures Component', () => {
     expect(screen.getByText('App Crash')).toBeInTheDocument();
   });
 
-  ### 3. Empty Input Validation Test
+  // ### 3. Empty Input Validation Test
   test('does not add failure if inputs are empty', () => {
     render(<CategorizeFailures />);
     const addButton = screen.getByRole('button', { name: /add failure/i });
@@ -58,7 +58,7 @@ describe('CategorizeFailures Component', () => {
     expect(listItems).not.toBeInTheDocument();
   });
 
-  ### 4. Bug Regression Test (The "null" initial value)
+  // ### 4. Bug Regression Test (The "null" initial value)
   test('does not throw error when rendering with failures', () => {
     // This test specifically checks if the .reduce initial value causes a crash
     // Note: If you haven't changed `null` to `{}` in your code yet, this test will fail!
