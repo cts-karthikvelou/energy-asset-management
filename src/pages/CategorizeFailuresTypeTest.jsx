@@ -65,6 +65,30 @@ describe('CategorizeFailures Component', () => {
     expect(typeInput.value).toBe('');
   });
 
+  test('does not add failure when failure field is empty', () => {
+    render(<CategorizeFailures />);
+    
+    const typeInput = screen.getByPlaceholderText('Enter type');
+    const addButton = screen.getByRole('button', { name: /Add Failure/i });
+    
+    fireEvent.change(typeInput, { target: { value: 'Type' } });
+    fireEvent.click(addButton);
+    
+    expect(screen.queryByText('Type')).not.toBeInTheDocument();
+  });
+
+  test('does not add failure when type field is empty', () => {
+    render(<CategorizeFailures />);
+    
+    const failureInput = screen.getByPlaceholderText('Enter failure');
+    const addButton = screen.getByRole('button', { name: /Add Failure/i });
+    
+    fireEvent.change(failureInput, { target: { value: 'Failure' } });
+    fireEvent.click(addButton);
+    
+    expect(screen.queryByText('Failure')).not.toBeInTheDocument();
+  });
+
   test('does not add failure when only one field is filled', () => {
     render(<CategorizeFailures />);
     
@@ -75,6 +99,20 @@ describe('CategorizeFailures Component', () => {
     fireEvent.click(addButton);
     
     expect(screen.queryByText('Cable short')).not.toBeInTheDocument();
+  });
+
+  test('does not add failure when fields contain only whitespace', () => {
+    render(<CategorizeFailures />);
+    
+    const failureInput = screen.getByPlaceholderText('Enter failure');
+    const typeInput = screen.getByPlaceholderText('Enter type');
+    const addButton = screen.getByRole('button', { name: /Add Failure/i });
+    
+    fireEvent.change(failureInput, { target: { value: '   ' } });
+    fireEvent.change(typeInput, { target: { value: '   ' } });
+    fireEvent.click(addButton);
+    
+    expect(screen.queryByText('   ')).not.toBeInTheDocument();
   });
 
   test('categorizes multiple failures by type', () => {
@@ -104,6 +142,52 @@ describe('CategorizeFailures Component', () => {
     expect(screen.getByText('Motor failure')).toBeInTheDocument();
     expect(screen.getByText('Belt wear')).toBeInTheDocument();
     expect(screen.getByText('Wiring issue')).toBeInTheDocument();
+  });
+
+  test('renders empty state when no failures are added', () => {
+    render(<CategorizeFailures />);
+    
+    expect(screen.getByText('Categorized Failures')).toBeInTheDocument();
+    expect(screen.queryAllByRole('heading', { level: 4 })).toHaveLength(0);
+  });
+
+  test('maintains correct state after multiple operations', () => {
+    render(<CategorizeFailures />);
+    
+    const failureInput = screen.getByPlaceholderText('Enter failure');
+    const typeInput = screen.getByPlaceholderText('Enter type');
+    const addButton = screen.getByRole('button', { name: /Add Failure/i });
+    
+    // Add, verify inputs clear, add again
+    fireEvent.change(failureInput, { target: { value: 'First' } });
+    fireEvent.change(typeInput, { target: { value: 'Type1' } });
+    fireEvent.click(addButton);
+    
+    expect(failureInput.value).toBe('');
+    expect(typeInput.value).toBe('');
+    
+    fireEvent.change(failureInput, { target: { value: 'Second' } });
+    fireEvent.change(typeInput, { target: { value: 'Type2' } });
+    fireEvent.click(addButton);
+    
+    expect(screen.getByText('First')).toBeInTheDocument();
+    expect(screen.getByText('Second')).toBeInTheDocument();
+  });
+
+  test('renders correct list structure with multiple types', () => {
+    render(<CategorizeFailures />);
+    
+    const failureInput = screen.getByPlaceholderText('Enter failure');
+    const typeInput = screen.getByPlaceholderText('Enter type');
+    const addButton = screen.getByRole('button', { name: /Add Failure/i });
+    
+    fireEvent.change(failureInput, { target: { value: 'Failure1' } });
+    fireEvent.change(typeInput, { target: { value: 'Type1' } });
+    fireEvent.click(addButton);
+    
+    const listItems = screen.getAllByRole('listitem');
+    expect(listItems).toHaveLength(1);
+    expect(listItems[0]).toHaveTextContent('Failure1');
   });
 
   test('renders snapshot correctly', () => {
