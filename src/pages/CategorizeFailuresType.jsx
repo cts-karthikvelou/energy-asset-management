@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const CategorizeFailures = () => {
+const CategorizeFailuresType = () => {
   const [ticketSummary, setTicketSummary] = useState('');
 
   const handleSummaryChange = (event) => {
@@ -23,4 +23,4 @@ const CategorizeFailures = () => {
   );
 };
 
-export default CategorizeFailures;
+export default CategorizeFailuresType;
