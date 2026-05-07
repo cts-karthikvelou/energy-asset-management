@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import DataScience from './DataScience';
 
 // Mock the recharts library
@@ -528,7 +527,7 @@ describe('DataScience Component', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByText('✔ No additional faults')).not.toBeInTheDocument();
+      expect(screen.queryByText('✔ No additional faults')).not.toBeInTheDocument();
       expect(screen.getByText('Dust')).toBeInTheDocument();
       expect(screen.getByText('Bird Drop')).toBeInTheDocument();
     });
